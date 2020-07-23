@@ -23,16 +23,16 @@ const makeSingular = function(species, period, carnivore, extinct) {
     dino.carnivore = carnivore;
     dino.extinct = extinct;
     
-    // if (species.includes('us') === true) {
-    //   dino.species.slice(species.length-2, species.length-1)
-    // } else {
-    //   dino.species = species;
-    // }
+    if (dino.species.charAt(dino.species.length-1) === 's' && dino.species.charAt(dino.species.length-2) === 'u') {
+      dino.species.slice(dino.species.length-2)
+    } else {
+      return dino.species;
+    }
     
    return dino
 
     }
-const dinosaurus = makeSingular('Eoraptor', 'Jurassic', false, true);
+const dinosaurus = makeSingular('Brachiosaurus', 'Jurassic', false, true);
 console.log(dinosaurus);
 
 
@@ -45,6 +45,12 @@ const truncateSpecies = function(species, period, carnivore, extinct) {
   expectedDino.carnivore = carnivore;
   expectedDino.extinct = extinct;
   
+  if (expectedDino.species !== undefined) {
+    expectedDino.species.slice(0, 7);
+  } else if (expectedDino.species.length <= 10) {
+    expectedDino.species;
+  }
+
 
  return expectedDino
 
@@ -54,13 +60,14 @@ console.log(dinosaury)
 
 
 const makeExtinct = function(species, period, carnivore, extinct) {
+  
   const expectedDino = {};
   expectedDino.species = species;
   expectedDino.period = period;
   expectedDino.carnivore = carnivore;
   expectedDino.extinct = extinct;
   
-  if (extinct !== undefined) {
+  if (extinct === undefined) {
     expectedDino.extinct = true;
   }
  return expectedDino
